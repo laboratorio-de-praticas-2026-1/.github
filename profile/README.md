@@ -47,7 +47,7 @@ As atualizações ocorrerão nas seguintes datas:
 | **09/04** | CX | **Squad Chat** | Implementação da ferramenta de comunicação em tempo real. |
 | **09/04** | CX | **Squad Contato** | Formulários e informações de atendimento ao cliente. |
 | **09/04** | Conteúdo e Mkt | **Squad Vitrine e CMS Publicidade** | Espaços para anúncios de parceiros e painel de gestão das campanhas. |
-| **23/04** | Dados | **Squad Dashboard** | Painel de controle gerencial com métricas de processos e faturamento. |
+| **23/04** | Dados | **Squad Engenharia de Dados e Dashboard** | Painel de controle gerencial com métricas de processos e faturamento. |
 | **23/04** | Dados | **Squad Reports em PDF** | Geração e download de recibos e relatórios de andamento de débitos. |
 | **23/04** | Core | **Squad Vitrine e CMS Serviços** | Catálogo de serviços do despachante e painel de edição de taxas. |
 | **23/04** | Core | **Squad Login e Cadastro de Usuários** | Fluxo completo de autenticação e registro de clientes. |
@@ -90,14 +90,12 @@ As atualizações ocorrerão nas seguintes datas:
 #### 2.1 Squad Data Science - Recomendação
 - **Como um usuário**, eu quero receber recomendações de serviços personalizadas com base no meu perfil (ex: aviso de renovação de CNH próxima ou seguro obrigatório), para que eu evite multas e mantenha tudo regularizado.
 
-#### 2.2 Squad Engenharia de Dados / Backend
+#### 2.2 Squad Engenharia de Dados e Dashboard
 - **Como um desenvolvedor**, eu quero que o servidor seja feito no mesmo projeto e que o banco de dados usado seja um local por enquanto, para que a configuração inicial seja ágil e estruturada.
 - **Como um analista**, eu quero ter acesso fácil e seguro aos dados, para que eu possa gerar relatórios e insights de serviços realizados.
-
-#### 2.3 Squad Dashboard
 - **Como um gestor**, eu quero ter um painel de controle (dashboard) com métricas importantes (processos em andamento, concluídos, faturamento), para que eu possa monitorar a operação do despachante e tomar decisões estratégicas.
 
-#### 2.4 Squad Reports em PDF
+#### 2.3 Squad Reports em PDF
 - **Como um cliente/gestor**, eu quero gerar relatórios e recibos em PDF sobre os débitos pagos ou andamento de processos, para que eu possa ter comprovantes documentados.
 
 ---
