@@ -19,7 +19,7 @@ Semanalmente, deverá ser entregue o vídeo das dailies entre os PMs, apresentan
 
 Cronograma:
 - **12/03** - Apresentação do Design System + Front (Header e Carrossel)
-- **26/03** - Front + Vitrine, CMS Blog + Busca Simples e Avançada
+- **26/03** - Front + Vitrine, CMS Blog + Busca Simples e Avançada + CMS (Header e Carrossel)
 - **09/04** - Agendamento de Serviço/Retirada + Chat + Contato + Vitrine e CMS Publicidade
 - **23/04** - Dashboard + Reports em PDF + Vitrine e CMS Serviços + Login e Cadastro + CMS Usuários
 - **04/05** - FAQ + Simulador de Débitos e Parcelamento + Mapa de Parceiros e Clínicas + Notificação de Prazos + Data Science (Recomendação)
@@ -39,10 +39,10 @@ As atualizações ocorrerão nas seguintes datas:
 | Data Limite | Produto | Squad | O que deve ser entregue |
 | :--- | :--- | :--- | :--- |
 | **12/03** | Matricial | **Squad UX** | Apresentação dos protótipos de alta fidelidade e fluxos de navegação. |
-| **12/03** | Matricial / Core | **Squad Front** & **Squad Header e Carrossel** | Implementação inicial do front-end com foco no cabeçalho e carrossel de serviços. |
+| **12/03** | Matricial | **Squad Front** & **Squad Header e Carrossel** | Implementação inicial do front-end com foco no cabeçalho e carrossel de serviços. |
 | **26/03** | Matricial | **Squad Front** | Continuação e refinamento das interfaces de usuário principais. |
 | **26/03** | Conteúdo e Mkt | **Squad Vitrine e CMS Blog** | Telas de exibição do blog e painel administrativo para publicações. |
-| **26/03** | Core | **Squad Busca Simples e Avançada** | Funcionalidade de busca por placa/Renavam e filtros avançados. |
+| **26/03** | Core | **Squad Busca Simples e Avançada e CMS (Header e Carrossel) ** | Funcionalidade de busca por placa/Renavam e filtros avançados. |
 | **09/04** | CX | **Squad Agendamento de Serviço/Retirada** | Sistema para marcação de horários de retirada de documentos ou serviços. |
 | **09/04** | CX | **Squad Chat** | Implementação da ferramenta de comunicação em tempo real. |
 | **09/04** | CX | **Squad Contato** | Formulários e informações de atendimento ao cliente. |
