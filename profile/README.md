@@ -19,7 +19,7 @@ Semanalmente, deverá ser entregue o vídeo das dailies entre os PMs, apresentan
 
 Cronograma:
 - **12/03** - Apresentação do Design System + Front (Header e Carrossel)
-- **26/03** - Front + Vitrine, CMS Blog + Busca Simples e Avançada
+- **26/03** - Front + Vitrine, CMS Blog + Busca Simples e Avançada + CMS (Header e Carrossel)
 - **09/04** - Agendamento de Serviço/Retirada + Chat + Contato + Vitrine e CMS Publicidade
 - **23/04** - Dashboard + Reports em PDF + Vitrine e CMS Serviços + Login e Cadastro + CMS Usuários
 - **04/05** - FAQ + Simulador de Débitos e Parcelamento + Mapa de Parceiros e Clínicas + Notificação de Prazos + Data Science (Recomendação)
