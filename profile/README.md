@@ -398,46 +398,58 @@ erDiagram
 CREATE DATABASE IF NOT EXISTS `lp_despachante_portal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `lp_despachante_portal`;
 
--- Copiando estrutura para tabela lp_despachante_portal.banner
-CREATE TABLE IF NOT EXISTS `banner` (
+
+CREATE TABLE `banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url_imagem` varchar(255) DEFAULT NULL,
-  `descricao` varchar(255) DEFAULT NULL,
-  `ativo` tinyint(1) DEFAULT 1,
+  `url_imagem` varchar(191) DEFAULT NULL,
+  `descricao` varchar(191) DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.blog
-CREATE TABLE IF NOT EXISTS `blog` (
+-- `banco-dev-lp_bortonedev`.blog definition
+
+CREATE TABLE `blog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(150) DEFAULT NULL,
   `conteudo` text DEFAULT NULL,
   `data_publicacao` date DEFAULT NULL,
-  `url_imagem` varchar(255) DEFAULT NULL,
+  `url_imagem` varchar(191) DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.documento_solicitacao
-CREATE TABLE IF NOT EXISTS `documento_solicitacao` (
+-- `banco-dev-lp_bortonedev`.debito definition
+
+CREATE TABLE `debito` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `solicitacao_id` int(11) NOT NULL,
-  `nome_hash` varchar(255) DEFAULT NULL,
-  `tipo_documento` varchar(100) DEFAULT NULL,
-  `status_validacao` enum('pendente','aprovado','rejeitado') DEFAULT 'pendente',
-  `data_upload` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_documento_solicitacao` (`solicitacao_id`),
-  CONSTRAINT `fk_documento_solicitacao` FOREIGN KEY (`solicitacao_id`) REFERENCES `solicitacao` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `tipo` enum('servico','veiculo') NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `valor` decimal(10,2) NOT NULL,
+  `status` enum('pago','pendente') NOT NULL DEFAULT 'pendente',
+  `created_at` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.empresa
-CREATE TABLE IF NOT EXISTS `empresa` (
+-- `banco-dev-lp_bortonedev`.emails_enviados definition
+
+CREATE TABLE `emails_enviados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_usuario` varchar(255) NOT NULL,
+  `email_usuario` varchar(255) NOT NULL,
+  `texto_digitado` text NOT NULL,
+  `data_envio` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  `assunto` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- `banco-dev-lp_bortonedev`.empresa definition
+
+CREATE TABLE `empresa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_fantasia` varchar(100) DEFAULT NULL,
   `cnpj` varchar(20) DEFAULT NULL,
@@ -447,85 +459,115 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `cidade` varchar(100) DEFAULT NULL,
   `estado` varchar(2) DEFAULT NULL,
   `site` varchar(100) DEFAULT NULL,
+  `tipo` enum('clinica','vistoria','detran') DEFAULT NULL,
+  `latitude` varchar(20) DEFAULT NULL,
+  `longitude` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.faq
-CREATE TABLE IF NOT EXISTS `faq` (
+-- `banco-dev-lp_bortonedev`.faq definition
+
+CREATE TABLE `faq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pergunta` text DEFAULT NULL,
   `resposta` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `categoria` enum('documentacao','regularizacao','manutencao','outros','frequentes') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.publicidade
-CREATE TABLE IF NOT EXISTS `publicidade` (
+-- `banco-dev-lp_bortonedev`.publicidade definition
+
+CREATE TABLE `publicidade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(150) DEFAULT NULL,
   `conteudo` text DEFAULT NULL,
-  `url_imagem` varchar(255) DEFAULT NULL,
+  `url_imagem` varchar(191) DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.servico
-CREATE TABLE IF NOT EXISTS `servico` (
+-- `banco-dev-lp_bortonedev`.servico definition
+
+CREATE TABLE `servico` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `descricao` text DEFAULT NULL,
   `valor_base` decimal(10,2) DEFAULT NULL,
   `prazo_estimado_dias` int(11) DEFAULT NULL,
-  `ativo` tinyint(1) DEFAULT 1,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.solicitacao
-CREATE TABLE IF NOT EXISTS `solicitacao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario_id` int(11) NOT NULL,
-  `veiculo_id` int(11) NOT NULL,
-  `servico_id` int(11) NOT NULL,
-  `status` enum('recebido','aguardando_pagamento','aguardando_documento','em_andamento','concluido','cancelado') DEFAULT 'recebido',
-  `observacao_cliente` text DEFAULT NULL,
-  `observacao_admin` text DEFAULT NULL,
-  `data_solicitacao` datetime DEFAULT current_timestamp(),
-  `data_conclusao` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_solicitacao_usuario` (`usuario_id`),
-  KEY `fk_solicitacao_veiculo` (`veiculo_id`),
-  KEY `fk_solicitacao_servico` (`servico_id`),
-  CONSTRAINT `fk_solicitacao_servico` FOREIGN KEY (`servico_id`) REFERENCES `servico` (`id`),
-  CONSTRAINT `fk_solicitacao_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_solicitacao_veiculo` FOREIGN KEY (`veiculo_id`) REFERENCES `veiculo` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- `banco-dev-lp_bortonedev`.usuario definition
 
--- Exportação de dados foi desmarcado.
-
--- Copiando estrutura para tabela lp_despachante_portal.usuario
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `nivel` enum('cliente','administrador') DEFAULT 'cliente',
+  `nivel` enum('cliente','administrador') NOT NULL DEFAULT 'cliente',
   `cpf_cnpj` varchar(20) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
-  `data_cadastro` datetime DEFAULT current_timestamp(),
+  `data_cadastro` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `usuario_email_key` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela lp_despachante_portal.veiculo
-CREATE TABLE IF NOT EXISTS `veiculo` (
+-- `banco-dev-lp_bortonedev`.debito_servico definition
+
+CREATE TABLE `debito_servico` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_debito` int(11) NOT NULL,
+  `id_servico` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `debito_servico_id_debito_key` (`id_debito`),
+  KEY `debito_servico_id_servico_fkey` (`id_servico`),
+  CONSTRAINT `debito_servico_id_debito_fkey` FOREIGN KEY (`id_debito`) REFERENCES `debito` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `debito_servico_id_servico_fkey` FOREIGN KEY (`id_servico`) REFERENCES `servico` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- `banco-dev-lp_bortonedev`.pagamento definition
+
+CREATE TABLE `pagamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_debito` int(11) NOT NULL,
+  `valor_total` decimal(10,2) NOT NULL,
+  `qtd_parcelas` int(11) NOT NULL,
+  `tipo_pagamento` enum('avista','parcelado') NOT NULL,
+  `metodo_pagamento` varchar(100) NOT NULL,
+  `taxa` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `created_at` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pagamento_id_debito_key` (`id_debito`),
+  CONSTRAINT `pagamento_id_debito_fkey` FOREIGN KEY (`id_debito`) REFERENCES `debito` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- `banco-dev-lp_bortonedev`.parcela definition
+
+CREATE TABLE `parcela` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pagamento` int(11) NOT NULL,
+  `valor` decimal(10,2) NOT NULL,
+  `numero_parcela` int(11) NOT NULL,
+  `status` enum('pago','atrasado','ativo') NOT NULL DEFAULT 'ativo',
+  `vencimento` date NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `parcela_id_pagamento_numero_parcela_key` (`id_pagamento`,`numero_parcela`),
+  CONSTRAINT `parcela_id_pagamento_fkey` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- `banco-dev-lp_bortonedev`.veiculo definition
+
+CREATE TABLE `veiculo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
   `placa` varchar(10) NOT NULL,
@@ -535,10 +577,60 @@ CREATE TABLE IF NOT EXISTS `veiculo` (
   `ano_fabricacao` int(11) DEFAULT NULL,
   `ano_modelo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_veiculo_usuario` (`usuario_id`),
-  CONSTRAINT `fk_veiculo_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `veiculo_usuario_id_fkey` (`usuario_id`),
+  CONSTRAINT `veiculo_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+-- `banco-dev-lp_bortonedev`.debito_veiculo definition
+
+CREATE TABLE `debito_veiculo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_debito` int(11) NOT NULL,
+  `id_veiculo` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `debito_veiculo_id_debito_key` (`id_debito`),
+  KEY `debito_veiculo_id_veiculo_fkey` (`id_veiculo`),
+  CONSTRAINT `debito_veiculo_id_debito_fkey` FOREIGN KEY (`id_debito`) REFERENCES `debito` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `debito_veiculo_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `veiculo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- `banco-dev-lp_bortonedev`.solicitacao definition
+
+CREATE TABLE `solicitacao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
+  `veiculo_id` int(11) DEFAULT NULL,
+  `servico_id` int(11) NOT NULL,
+  `status` enum('recebido','aguardando_pagamento','aguardando_documento','em_andamento','concluido','cancelado') NOT NULL DEFAULT 'recebido',
+  `observacao_cliente` text DEFAULT NULL,
+  `observacao_admin` text DEFAULT NULL,
+  `data_solicitacao` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  `data_conclusao` datetime(3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `solicitacao_usuario_id_fkey` (`usuario_id`),
+  KEY `solicitacao_veiculo_id_fkey` (`veiculo_id`),
+  KEY `solicitacao_servico_id_fkey` (`servico_id`),
+  CONSTRAINT `solicitacao_servico_id_fkey` FOREIGN KEY (`servico_id`) REFERENCES `servico` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `solicitacao_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `solicitacao_veiculo_id_fkey` FOREIGN KEY (`veiculo_id`) REFERENCES `veiculo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- `banco-dev-lp_bortonedev`.documento_solicitacao definition
+
+CREATE TABLE `documento_solicitacao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `solicitacao_id` int(11) NOT NULL,
+  `nome_hash` varchar(191) DEFAULT NULL,
+  `tipo_documento` varchar(100) DEFAULT NULL,
+  `status_validacao` enum('pendente','aprovado','rejeitado') NOT NULL DEFAULT 'pendente',
+  `data_upload` datetime(3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `documento_solicitacao_solicitacao_id_fkey` (`solicitacao_id`),
+  CONSTRAINT `documento_solicitacao_solicitacao_id_fkey` FOREIGN KEY (`solicitacao_id`) REFERENCES `solicitacao` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 -- Exportação de dados foi desmarcado.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
