@@ -178,6 +178,8 @@ erDiagram
         date data_publicacao
         string url_imagem
         bool ativo
+        string olho_do_texto
+        CategoriaBlog categoria
     }
     Empresa {
         int id PK
@@ -245,6 +247,7 @@ erDiagram
         decimal valor_base
         int prazo_estimado_dias
         bool ativo
+        bool exige_veiculo
     }
     DocumentoSolicitacao {
         int id PK
@@ -299,6 +302,24 @@ erDiagram
         date vencimento
     }
 
+    InteracaoUsuario {
+        int id PK
+        int usuario_id FK
+        CategoriaBlog categoria_blog
+        date data_interacao
+    }
+
+    Relatorio {
+        int id PK
+        string nome
+        string descricao
+        RelatorioCategoria categoria
+        string url_documento_hash
+        date data_geracao
+        date periodo_inicio
+        date periodo_fim
+    }
+
     NivelUsuario {
         string cliente
         string administrador
@@ -328,6 +349,15 @@ erDiagram
         string outros
         string frequentes
     }
+
+    CategoriaBlog {
+    string Documentacao
+    string Debitos
+    string Multas
+    string Legislacao
+    string Condutor
+    }
+
     TipoDebito {
         string servico
         string veiculo
@@ -345,9 +375,23 @@ erDiagram
         string atrasado
         string ativo
     }
+    RelatorioCategoria {
+        string relatorio_completo
+        string performance_financeira
+        string desempenho_operacional
+        string performance_servicos
+        string gestao_solicitacoes
+        string gestao_documentos
+        string gestao_veiculos
+        string base_clientes
+        string analise_eficiencia
+        string funil_conversao
+        string gargalos_operacionais
+    }
 
     Usuario ||--o{ Veiculo : "possui"
     Usuario ||--o{ Solicitacao : "abre"
+    Usuario ||--o{ InteracaoUsuario : "gera"
     Veiculo ||--o{ Solicitacao : "referenciado em"
     Servico ||--o{ Solicitacao : "solicitado em"
     Solicitacao ||--o{ DocumentoSolicitacao : "tem"
@@ -367,9 +411,12 @@ erDiagram
     Debito }o--|| StatusDebito : "status"
     Pagamento }o--|| TipoPagamento : "tipoPagamento"
     Parcela }o--|| StatusParcela : "status"
+    Blog }o--|| CategoriaBlog : "categoria"
+    InteracaoUsuario }o--|| CategoriaBlog : "categoriaBlog"
+    Relatorio }o--|| RelatorioCategoria : "categoria"
 ```
 
-
+<!--
 
 ### Script SQL
 <details>
@@ -642,6 +689,7 @@ CREATE TABLE `documento_solicitacao` (
 ```
 
 </details>
+
 
 <details>
 
@@ -1005,6 +1053,7 @@ INSERT INTO `veiculo` (`id`, `usuario_id`, `placa`, `renavam`, `marca`, `modelo`
 ```
 
 </details>
+-->
 
 ## Avaliação
 
