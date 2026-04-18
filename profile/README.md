@@ -416,8 +416,6 @@ erDiagram
     Relatorio }o--|| RelatorioCategoria : "categoria"
 ```
 
-<!--
-
 ### Script SQL
 <details>
 
@@ -1053,7 +1051,6 @@ INSERT INTO `veiculo` (`id`, `usuario_id`, `placa`, `renavam`, `marca`, `modelo`
 ```
 
 </details>
--->
 
 ## Avaliação
 
