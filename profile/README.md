@@ -1052,6 +1052,9 @@ INSERT INTO `veiculo` (`id`, `usuario_id`, `placa`, `renavam`, `marca`, `modelo`
 
 </details>
 
+## Links:
+- Figma: https://www.figma.com/design/MrHHSBmzJRJhM8EdifccLe/Laborat%C3%B3rio-de-Pr%C3%A1ticas---UX?node-id=1-18033&p=f&t=TwYWdQd7sFEiwJGa-0
+
 ## Avaliação
 
 ### Entrega dos Vídeos
